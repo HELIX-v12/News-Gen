@@ -72,24 +72,24 @@ let img_data=document.querySelector('.n_box');
 let description_data=document.querySelectorAll('.des');
 let index = 1;
 //button event
-btn.addEventListener('click', () => {
-    sound.currentTime = 0;
-    sound.play();
-    date_data.innerHTML = `${modernDate(news.articles[index].published_at)} ago`;
-    head_data.innerHTML = news.articles[index].headline;
-    src_data.innerHTML = news.articles[index].source;
-    img_data.style.backgroundImage=`url("${news.articles[index].image_url}")`;
-    //description must be dumplicated , so we Itrate the descr. 2 times from .des nodeList
-    for (tag of description_data){
-        tag.innerHTML=news.articles[index].description;
-    }
-    index += 1;
-    if ((index) == (news.articles.length)) {
-        index = 0
-        console.log('newsRepeatingNow..')
-    };
+// btn.addEventListener('click', () => {
+//     sound.currentTime = 0;
+//     sound.play();
+//     date_data.innerHTML = `${modernDate(news.articles[index].published_at)} ago`;
+//     head_data.innerHTML = news.articles[index].headline;
+//     src_data.innerHTML = news.articles[index].source;
+//     img_data.style.backgroundImage=`url("${news.articles[index].image_url}")`;
+//     //description must be dumplicated , so we Itrate the descr. 2 times from .des nodeList
+//     for (tag of description_data){
+//         tag.innerHTML=news.articles[index].description;
+//     }
+//     index += 1;
+//     if ((index) == (news.articles.length)) {
+//         index = 0
+//         console.log('newsRepeatingNow..')
+//     };
     
-});
+// });
 
 
 //Hamburger
@@ -132,3 +132,37 @@ document.addEventListener('click' , (e)=>{
         return (days==1)? (`${days}d`):(`${days}d`);
     }
 }
+
+//Sleep Function declaration
+function sleep(time){
+    return new Promise(resolve => setTimeout(resolve, time))
+}
+
+
+//TypeWriter Display
+let messageDisplay = document.querySelector(".message")
+let messages= ['Hey there!' , 'How are you?' , 'Good Morning!' , 'Welcome' , 'Greetings!' , 'Voila~']
+async function typewrite(arr ,bar_maxHt ,element_obj){
+    while(true){
+        for(let obj of arr){
+            element_obj.style.setProperty("--height", `${bar_maxHt}`);
+            for (let char of obj){
+                element_obj.textContent += char;
+                await sleep(200)
+            };
+            element_obj.classList.toggle('anim');
+            await sleep(4000)
+            for (let char of obj){
+                element_obj.textContent= element_obj.textContent.slice(0,-1);
+                await sleep(100)
+                
+            };
+            element_obj.style.setProperty("--height", "0%");
+            await sleep(2000);
+            element_obj.classList.toggle('anim');
+        }
+
+    };
+}
+typewrite(messages , '140%' ,messageDisplay);
+typewrite(messages , '105%',document.querySelector(".message2"))
