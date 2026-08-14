@@ -16,8 +16,8 @@ if (parameters.get("category")) {
     window.history.replaceState({}, "", "index.html");
 }
 
-const url = `https://noozra.com/api/articles?category=${category}&limit=50`; //Use for internet only
-// const url=`ap.json`; //for local use only!
+// const url = `https://noozra.com/api/articles?category=${category}&limit=50`; //Use for internet only
+const url=`ap.json`; //for local use only!
 //API fetch--
 let getNews = async () => {
     let response = await fetch(url);
@@ -51,9 +51,12 @@ async function loading() {
     date_data.innerHTML = `${modernDate(news.articles[0].published_at)} ago`;
     head_data.innerHTML = news.articles[0].headline;
     src_data.innerHTML = news.articles[0].source;
-    description_data.innerHTML = news.articles[0].description;
     img_data.style.backgroundImage= `url("${news.articles[0].image_url}")`;
-    link = news.articles[0].url;
+    //description must be dumplicated , so we Itrate the descr. 2 times from .des nodeList
+    for (tag of description_data){
+        tag.innerHTML=news.articles[0].description;
+    }
+    
     
     
 
@@ -66,8 +69,8 @@ let date_data = document.querySelector('#date');
 let head_data = document.querySelector('.head');
 let src_data = document.querySelector('.src');
 let img_data=document.querySelector('.n_box');
-let description_data=document.querySelector('.n_des')
-let index = 0;
+let description_data=document.querySelectorAll('.des');
+let index = 1;
 //button event
 btn.addEventListener('click', () => {
     sound.currentTime = 0;
@@ -75,12 +78,13 @@ btn.addEventListener('click', () => {
     date_data.innerHTML = `${modernDate(news.articles[index].published_at)} ago`;
     head_data.innerHTML = news.articles[index].headline;
     src_data.innerHTML = news.articles[index].source;
-    description_data.innerHTML = news.articles[index].description;
     img_data.style.backgroundImage=`url("${news.articles[index].image_url}")`;
-    link = news.articles[index].url;
-    
+    //description must be dumplicated , so we Itrate the descr. 2 times from .des nodeList
+    for (tag of description_data){
+        tag.innerHTML=news.articles[index].description;
+    }
     index += 1;
-    if ((index) >= (news.articles.length)) {
+    if ((index) == (news.articles.length)) {
         index = 0
         console.log('newsRepeatingNow..')
     };

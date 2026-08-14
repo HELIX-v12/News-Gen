@@ -7,62 +7,113 @@
     <title>News Gen</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body class="b2">
-    <div class="l_ screen">Loading...</div>
+    <!-- <div class="l_ screen">Loading...</div> -->
 
+
+
+    <!-- //Navbar -->
     <nav>
+        <div class="logo"><img src="logo.png" height="50" alt="logo here!"> </div>
         <div class="navContent">
             <!-- for uW -->
             <ul class="navLinks">
-                <li><a href="#">About</a></li>
+                <li><a href="index.html" class="special">Home </a></li>
+                <li><a href="htmls/category.html">Categories</a></li>
                 <li><a href="#">API</a></li>
                 <li><a href="#">Portfolio</a></li>
-                <li><a href="htmls/category.html">Categories</a></li>
-                <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+                <li><a href="#">About</a></li>
             </ul>
             <!-- for Mobile screens -->
             <div class="menu">
                 ☰
             </div>
-
         </div>
-        <div class="logo"><img src="logo.png" height="30" alt="logo here!"> </div>
+        <div class="search">Search here</div>
     </nav>
-    <div class="main">
-        <div class="n_box">
-            <div class="border">
+
+    <div class="displayAr">
+        <!-- //Sidebar for Desktop -->
+        <div class="sidebarDesk"></div>
+
+        <!-- //Main Area -->
+        <div class="main">
+            <div class="newsArea">
+                <div class="n_box">
+                    <div class="stats">
+
+                        <div class="head">
+
+                        </div>
+                        <div class="de_strip">
+                            <div class="n_des">
+                                <div class="des"></div>
+                                <div class="des"></div>
+                            </div>
+                        </div>
+                        <div class="contains_date">
+                            <div class="src">
+
+                            </div>
+                            <span class="dot">&bull;</span>
+                            <div id="date">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="stats">
-
-                <div class="head">
-
-                </div>
-                <div class="n_des">
-
-                </div>
-                <div class="contains_date">
-                    <div class="src">
-
+            <div class="cardWrapper">
+                <div class="cardAreaHead">Latest News</div>
+                    <div class="cardArea">
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
+                        <div class="card">
+                        </div>
                     </div>
-                        <span class="dot">·</span> 
-                    <div id="date">
-
-                    </div>
-                </div>
-                <!-- <div id="url_holder">
-                    <a href="" id="url" target="_blank">Read More</a>
-                </div> -->
             </div>
         </div>
-        <button id="b_">
-            Get some news!
-        </button>
-
     </div>
+
+
+
+
+
+
+
+    <!-- //Sitefooter -->
+    <footer class="siteFooter">
+        <!-- Adding later -->
+    </footer>
+
+
+
+    <!-- //Casing -->
     <div class="case ">
         <div class="close_button"><span class="material-symbols-outlined ">close</span></div>
         <div class="menuLinks">
@@ -134,7 +185,6 @@
         </footer>
 
     </div>
-    <audio src="click_ sound.wav"></audio>
     <script src="script.js"></script>
 
 </body>
