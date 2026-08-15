@@ -166,3 +166,136 @@ async function typewrite(arr ,bar_maxHt ,element_obj){
 }
 typewrite(messages , '140%' ,messageDisplay);
 typewrite(messages , '105%',document.querySelector(".message2"))
+
+//random array obj return function
+let arrKeyGenCache=[];
+function arrKeyGen(arr, cache='on'){
+    let ind =Math.floor(Math.random()*arr.length);
+        if(cache=='on'){
+                if(arrKeyGenCache.includes(ind)){
+                    return arrKeyGen(arr)
+
+                }
+                else{
+                arrKeyGenCache.push(ind);
+                return ind;
+
+                }
+            }
+        else if(cache=='off'){
+            return ind; 
+        }
+       
+    
+}
+
+
+//Capitalize function
+function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+//Hz Cards
+// const card_url='https://noozra.com/api/articles?limit=100'; //for online use only 
+const card_url='ap.json';  //Local data
+let articlesWithImage;
+async function getCardData(){
+    let data = await fetch(card_url);
+    let card_data = await data.json();
+    articlesWithImage = card_data.articles.filter(
+            artc => artc.image_url
+        );
+    let tag=0;
+    while (tag<20){
+        document.querySelector('.scrollStrip').innerHTML+=`
+                    <div class="scrollCard">
+                        <div class="card_img"></div>
+                        <div class="card_cat"></div>
+                        <div class="card_txt"></div>
+                        <div class="card_date"></div>
+                     </div>`
+        tag++;
+    }
+    let tile=0
+    while (tile<20){
+        document.querySelector('.tileArea').innerHTML+=`
+                    <div class="tile">
+                        <div class="tile_img"></div>
+                        <div class="tileStat">
+                            <div class="tile_source"></div>
+                            <div class="tile_txt"></div>
+                            <div class="tile_date"></div>
+                        </div>
+                    </div>`
+        tile++;
+    }
+
+}
+async function cardRender(){
+    await getCardData();
+    let cards = document.querySelectorAll('.scrollCard');
+    for (let card of cards){
+        let card_img=card.querySelector('.card_img');
+        let card_txt=card.querySelector('.card_txt');
+        let card_cat=card.querySelector('.card_cat');
+        let card_date=card.querySelector('.card_date');
+
+        let article=articlesWithImage[arrKeyGen(articlesWithImage)];
+        let image = new Image();
+        image.onload= () =>{
+            card_img.style.backgroundImage=`url(${article.image_url})`
+        }
+        image.src=article.image_url;
+        card_txt.textContent=article.headline;
+        card_cat.textContent=capitalize(article.category);
+        card_date.textContent=modernDate(article.published_at)+' ago';
+        card.addEventListener('click' , ()=>{
+            window.location.href = article.url;
+        })
+    
+    }
+    let tiles = document.querySelectorAll('.tile');
+    for (let tile of tiles){
+        let tile_img=tile.querySelector('.tile_img');
+        let tile_txt=tile.querySelector('.tile_txt');
+        let tile_date=tile.querySelector('.tile_date');
+        let tile_source=tile.querySelector('.tile_source');
+        let article=articlesWithImage[arrKeyGen(articlesWithImage)];
+        let image = new Image();
+        image.onload= () =>{
+            tile_img.style.backgroundImage=`url(${article.image_url})`
+        }
+        image.src=article.image_url;
+        tile_txt.textContent=article.headline;
+        tile_date.textContent=article.date;
+        tile_source.textContent=article.source;
+        
+        //title styles
+        const colors = [
+        '#2563eb',
+        '#7c3aed',
+        '#db2777',
+        '#dc2626',
+        '#ea580c',
+        '#16a34a',
+        '#b20876',
+        '#b20808',
+        '#128214',
+        '#fb9b01',
+        '#282e2f',
+        '#8807eb',
+        '#ea0bdf',
+        '#8ab208',
+        '#35dc14',
+        '#b2a408',
+        '#0891b2',
+        '#0891b2',
+        '#ff0000',
+        ];
+        tile_source.style.color=colors[arrKeyGen(colors, 'off')]
+
+    }
+
+
+}
+cardRender();
