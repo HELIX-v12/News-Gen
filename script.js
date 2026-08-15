@@ -195,6 +195,31 @@ function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+//Color Pallete
+const colors = [
+        '#2563eb',
+        '#7c3aed',
+        '#db2777',
+        '#dc2626',
+        '#ea580c',
+        '#16a34a',
+        '#b20876',
+        '#b20808',
+        '#128214',
+        '#fb9b01',
+        '#282e2f',
+        '#8807eb',
+        '#ea0bdf',
+        '#8ab208',
+        '#35dc14',
+        '#b2a408',
+        '#0891b2',
+        '#0891b2',
+        '#ff0000',
+        ];
+
+
+
 //Hz Cards
 // const card_url='https://noozra.com/api/articles?limit=100'; //for online use only 
 const card_url='ap.json';  //Local data
@@ -252,8 +277,10 @@ async function cardRender(){
         card.addEventListener('click' , ()=>{
             window.location.href = article.url;
         })
+        card_cat.style.color=colors[arrKeyGen(colors , 'off')];
     
     }
+    
     let tiles = document.querySelectorAll('.tile');
     for (let tile of tiles){
         let tile_img=tile.querySelector('.tile_img');
@@ -267,31 +294,11 @@ async function cardRender(){
         }
         image.src=article.image_url;
         tile_txt.textContent=article.headline;
-        tile_date.textContent=article.date;
+        tile_date.textContent=modernDate(article.published_at) + ' ago';
         tile_source.textContent=article.source;
         
         //title styles
-        const colors = [
-        '#2563eb',
-        '#7c3aed',
-        '#db2777',
-        '#dc2626',
-        '#ea580c',
-        '#16a34a',
-        '#b20876',
-        '#b20808',
-        '#128214',
-        '#fb9b01',
-        '#282e2f',
-        '#8807eb',
-        '#ea0bdf',
-        '#8ab208',
-        '#35dc14',
-        '#b2a408',
-        '#0891b2',
-        '#0891b2',
-        '#ff0000',
-        ];
+        
         tile_source.style.color=colors[arrKeyGen(colors, 'off')]
 
     }

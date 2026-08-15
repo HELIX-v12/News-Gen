@@ -140,7 +140,7 @@ body {
     overflow: hidden;
     z-index: 0;
     height: 260px;
-    width: 90%;
+    width: 95%;
     transition: 0.5s ease-in;
 
 }
@@ -205,7 +205,7 @@ body {
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 130px;
+    height: 105px;
     overflow-y: hidden;
     -webkit-mask-image: linear-gradient(to top, transparent 5%, black 20%);
     mask-image: linear-gradient(to top, transparent 5%, rgb(124, 122, 122) 20%)
@@ -228,20 +228,21 @@ body {
 
 .dot {
     user-select: none;
-    color: rgba(124, 123, 123, 0.851);
+    color: rgba(154, 153, 153, 0.971);
     position: relative;
     top: 8px;
     font-size: 10px;
 }
 
 #date {
-    color: rgba(124, 123, 123, 0.971);
+    color: rgba(154, 153, 153, 0.971);
     font-family: poppins;
     z-index: 5;
     font-size: 12px;
     position: relative;
     top: 6px;
     user-select: none;
+    font-weight: 500;
 }
 
 .contains_date {
@@ -282,7 +283,7 @@ body {
     align-items: center;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 4px 0px;
     background-color: var(--BGmain);
-    gap: 40px;
+    gap: 17px;
     padding-top: 70px;
     margin-right: 10px;
     border-radius: 20px;
@@ -292,7 +293,7 @@ body {
     flex-grow: 1;
     min-width: 0;
     padding-bottom: 2px;
-    
+
 }
 
 
@@ -678,7 +679,7 @@ main {
 
 
 .menu_icon {
-    background-color:#1557ff46;
+    background-color: #1557ff46;
     border-radius: 100%;
     padding: 10px;
     font-weight: 300;
@@ -862,7 +863,7 @@ main {
 
 /* tileArea */
 .tileWrapper {
-    width: 90%;
+    width: 95%;
 }
 
 .tileArea {
@@ -871,7 +872,7 @@ main {
     border-radius: 12px;
     background-color: var(--BGcard);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     justify-content: center;
     padding: 7px;
     gap: 7px;
@@ -879,11 +880,22 @@ main {
 }
 
 .tile {
-    height: 140px;
+    height: 110px;
     background-color: var(--BGmain);
     border: 1px solid var(--divider);
     border-radius: 12px;
     display: flex;
+    transition: transform 0.2s ease-in;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.tile:active {
+    transform: scale(0.95);
+
 }
 
 .tileAreaHead {
@@ -891,9 +903,11 @@ main {
     font-weight: 800;
     padding-bottom: 12px;
     font-size: 18px;
+    padding-left: 5px;
 
 }
-.tile_img{
+
+.tile_img {
     width: 40%;
     height: 100%;
     border-top-left-radius: 12px;
@@ -903,23 +917,47 @@ main {
     background-repeat: no-repeat;
     flex-shrink: 0;
 }
-.tile_txt{
-    height: 50px;
-    font-size: 16px;
-    line-height: 1.1;
-    
+
+.tile_txt {
+    height: 64px;
+    /* line-height: 1.2; */
+    font-size: 13px;
     font-weight: 500;
-    
-    
-    
-    
+    display: -webkit-box;
+    -webkit-box-ordinal-group: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: scroll;
+    scrollbar-width: auto;
+
+
+
+
 }
-.tile_source{
+
+.tile_source {
     color: red;
+    font-size: 12px;
+    font-weight: 500;
 }
-.tileStat{
+
+.tileStat {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    position: relative;
 }
+
+.tile_date {
+    color: var(--secText);
+    font-size: 10px;
+    position: absolute;
+    bottom: 6px;
+    right: 12px;
+}
+
+
 
 
 
@@ -964,16 +1002,17 @@ main {
 
 
 
-.scrollStrip{
-    
+.scrollStrip {
+
     box-sizing: border-box;
     display: flex;
     align-items: center;
     gap: 7px;
     height: 100%;
-    
+
 }
-.scrollCard{
+
+.scrollCard {
     height: 95%;
     width: 140px;
     background-color: var(--BGmain);
@@ -981,20 +1020,22 @@ main {
     border-radius: 12px;
     position: relative;
     transition: transform 0.15s ease-out;
- 
-    
+
+
 }
-.scrollCard:hover{
+
+.scrollCard:hover {
     transform: scale(1.1);
-    
+
 }
-.scrollCard:active{
+
+.scrollCard:active {
     transform: scale(0.9);
 }
 
-.scrollWrap{
+.scrollWrap {
     height: 200px;
-    width: 90%;
+    width: 95%;
     background-color: var(--BGcard);
     border: 1px solid var(--divider);
     border-radius: 12px;
@@ -1004,14 +1045,28 @@ main {
     padding: 0px 7px;
     overflow-x: scroll;
     overflow-y: none;
-    
-    
-    
+
+
+
 }
-.scrollWrap::-webkit-scrollbar{
+
+.scrollWrap::-webkit-scrollbar {
     display: none;
 }
-.card_img{
+
+.cardHead {
+    position: relative;
+    top: 10px;
+    left: 5px;
+    width: 95%;
+    display: flex;
+    align-items: flex-start;
+    color: var(--primTxt);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.card_img {
     width: 100%;
     height: 45%;
     background-size: cover;
@@ -1021,7 +1076,8 @@ main {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
-.card_cat{
+
+.card_cat {
     font-size: 10px;
     font-weight: 500;
     position: relative;
@@ -1029,7 +1085,8 @@ main {
     top: 4px;
 
 }
-.card_txt{
+
+.card_txt {
     height: 50px;
     font-size: 11px;
     line-height: 1.3;
@@ -1043,9 +1100,10 @@ main {
     scrollbar-width: auto;
     position: relative;
     top: 6px;
-    
+
 }
-.card_date{
+
+.card_date {
     font-size: 10px;
     color: var(--secText);
     font-weight: 500;
@@ -1059,7 +1117,7 @@ main {
 
 
 /* //Main Footer */
-.siteFooter{
+.siteFooter {
     height: 178px;
     background-color: #0F172A;
     width: 100%;
@@ -1069,35 +1127,44 @@ main {
     align-items: center;
     flex-direction: column;
     gap: 17px;
-    
+
 }
-.copyRight{
+
+.copyRight {
     color: rgb(158, 158, 158);
     user-select: none;
+    font-size: 11px;
 }
-.profImage img{
+
+.profImage img {
     opacity: 0.95;
 }
-.profImage{
+
+.profImage {
     display: flex;
     gap: 14px;
-    
+
 }
-.names{
+
+.names {
     display: flex;
     flex-direction: column;
-    gap:1px;
+    gap: 1px;
 }
-.u_name{
-    font-size: 45px;
+
+.u_name {
+    font-size: 35px;
     color: #f7f6f9;
+    font-weight: 600;
 }
-.insta_id{
-    font-size: 17px;
+
+.insta_id {
+    font-size: 14px;
     color: rgb(176, 174, 174);
     transition: transform 0.2s ease-in-out;
 }
-.insta_id:hover{
+
+.insta_id:hover {
     transform: scale(1.1);
     color: white;
 }
@@ -1225,6 +1292,20 @@ main {
         height: 250px;
     }
 
+    .head {
+        font-size: 23px;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-box-ordinal-group: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: scroll;
+        scrollbar-width: auto;
+    }
+
+    .de_strip {
+        height: 96px;
+    }
 
     /* //sidefooter */
     #letsConnect2 {
@@ -1242,6 +1323,16 @@ main {
 
     #handles2 img {
         height: 18px !important;
+    }
+
+
+
+    /* //Mainfoot */
+    .insta_id{
+        font-size: 13px;
+    }
+    .u_name{
+        font-size: 30px;
     }
 
 
@@ -1273,17 +1364,17 @@ main {
     .search {
         display: none;
     }
-    
+
     .message2 {
         display: block;
-        font-size: 20px;
+        font-size: 28px;
         font-weight: 500;
         height: 20px;
         width: 90%;
         color: var(--triTxt);
         position: absolute;
-        left: 10px;
-        top: -40px;
+        left: 13px;
+        top: -45px;
 
     }
 
@@ -1298,6 +1389,12 @@ main {
         top: 1px;
         transition: 1s ease;
     }
+
+    .newsArea {
+        margin-top: 37px;
+    }
+
+    
 }
 
 @media screen and (max-width:460px) {
@@ -1358,22 +1455,98 @@ main {
         padding: 10px;
     }
 
+
+
     /* //MainArea */
 
 
     .n_box {
         height: 170px !important;
         width: 95%;
+        padding: 11px;
     }
 
-    .cardWrapper {
+    .head {
+        font-size: 14px;
+    }
+
+    .n_des {
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .des {
+        font-size: 10px;
+    }
+
+    .de_strip {
+        height: 75px;
+    }
+
+    .src {
+        font-size: 14px;
+    }
+
+    .dot {
+        top: 4px;
+    }
+
+    #date {
+        top: 2px;
+    }
+
+
+
+    /* //Tile in mobile */
+    .tileWrapper {
         width: 95%;
     }
 
-    .cardArea {
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    .tileArea {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         padding: 5px;
         gap: 5px;
     }
 
+    .tile_img {
+        width: 40%;
+        height: 100%;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        flex-shrink: 0;
+    }
+
+
+    /* Card in mobile */
+
+    .scrollWrap {
+        height: 180px;
+    }
+
+    .scrollCard {
+        width: 120px;
+    }
+
+    .card_date {
+        bottom: -14px;
+        left: 11px;
+    }
+
+    /* //Mainfoot */
+    .insta_id{
+        font-size: 11px;
+    }
+    .u_name{
+        font-size: 25px;
+    }
+    .profImage img{
+        height: 70px !important;
+    }
+    .siteFooter{
+        gap: 20px;
+        padding-top: 35px;
+    }
 }
